@@ -1,0 +1,20 @@
+<app-task-input
+  (newTaskCreated)="onNewTaskAdded($event)"
+>
+</app-task-input>
+
+<ul
+  class="list-group"
+>
+  <li
+    class="list-group"
+    *ngIf="allTasks.length === 0"
+  >
+    All tasks completed!
+  </li>
+  <app-task
+    *ngFor="let task of filteredTasks"
+    [task]="task"
+  >
+  </app-task>
+</ul>
