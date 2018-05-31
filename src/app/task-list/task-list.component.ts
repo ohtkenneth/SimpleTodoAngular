@@ -18,8 +18,6 @@ export class TaskListComponent implements OnInit {
 
   onNewTaskAdded(newTask) {
     this.allTasksCompleted = this.allTasks.length === 0 ? true : false;
-
-    console.log(this.allTasksCompleted);
     this.allTasks.push({
       taskDescription: newTask.taskDescription,
       isTaskActive: newTask.isTaskActive
@@ -27,7 +25,6 @@ export class TaskListComponent implements OnInit {
   }
 
   onTaskCompleted(taskIndex) {
-    console.log(taskIndex.index);
     // take taskIndex and remove it from allTasks
     this.allTasks.splice(taskIndex, 1);
   }
