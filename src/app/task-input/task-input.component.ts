@@ -8,7 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 export class TaskInputComponent implements OnInit {
  // @Output() serverCreated = new EventEmitter<{ serverName: string, serverContent: string }>();
-  @Output() newTaskCreated = new EventEmitter<{ taskDescription: string, isTaskActive: boolean }> ();
+  @Output() newTaskCreated = new EventEmitter<{ taskDescription: string, taskStatus: string }> ();
 
   newTaskDescription: '';
 
@@ -19,15 +19,10 @@ export class TaskInputComponent implements OnInit {
 
   onAddNewTask() {
     console.log(this.newTaskDescription);
-    this.newTaskDescription = '';
     this.newTaskCreated.emit({
       taskDescription: this.newTaskDescription,
-      isTaskActive: true
-    })
+      taskStatus: 'active'
+    });
+    this.newTaskDescription = '';
   }
 }
-
-// when using two way binding, need to import formsmodule in app module
-// when using events, need to define event emitters in emitting component, with Output imports
-// event emitters become property binds in PARENT COMPONENT on the child component tag
-  // when event is clicked in component, actually emit the events with component data

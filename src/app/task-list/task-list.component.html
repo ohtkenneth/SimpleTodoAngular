@@ -6,15 +6,18 @@
 <ul
   class="list-group"
 >
+	<br />
   <li
     class="list-group"
-    *ngIf="allTasks.length === 0"
+    *ngIf="allTasksCompleted"
   >
     All tasks completed!
   </li>
   <app-task
-    *ngFor="let task of filteredTasks"
+    *ngFor="let task of allTasks; let i = index"
+		[taskIndex]="i"
     [task]="task"
+		(taskCompleted)="onTaskCompleted($event)"
   >
   </app-task>
 </ul>

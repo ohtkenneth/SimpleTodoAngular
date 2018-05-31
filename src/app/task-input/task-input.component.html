@@ -1,19 +1,18 @@
+
 <div class="form-row">
-  <div class="col">
+  <div class="col-sm-8">
     <label for="taskInputField">Input New Task</label>
-    <input
-      type="text"
-      class="form-control form-control-md"
-      [(ngModel)]="newTaskDescription"
-    />
-  </div>
-  <div class="col">
-    <button
-      type="submit"
-      class="btn btn-success"
-      (click)="onAddNewTask()"
-      >
-      Add New Task
-    </button>
+	<input
+	  type="text"
+	  class="form-control mb"
+	  [(ngModel)]="newTaskDescription"
+	/>
   </div>
 </div>
+<button
+  type="submit"
+  class="btn btn-success"
+  (click)="onAddNewTask()"
+  >
+  Add New Task
+</button>

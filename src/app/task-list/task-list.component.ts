@@ -8,9 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class TaskListComponent implements OnInit {
 
   allTasks = [];
-  filteredTasks = [];
-  // task list has event listeners
-  // when task is created in task input component, this is called
+
+  allTasksCompleted = true;
 
   constructor() { }
 
@@ -18,9 +17,21 @@ export class TaskListComponent implements OnInit {
   }
 
   onNewTaskAdded(newTask) {
-    this.filteredTasks.push({
+    this.allTasksCompleted = this.allTasks.length === 0 ? true : false;
+
+    console.log(this.allTasksCompleted);
+    this.allTasks.push({
       taskDescription: newTask.taskDescription,
       isTaskActive: newTask.isTaskActive
     });
   }
+
+  onTaskCompleted(taskIndex) {
+    console.log(taskIndex.index);
+    // take taskIndex and remove it from allTasks
+    this.allTasks.splice(taskIndex, 1);
+  }
 }
+
+// by default app shows active tasks
+// when completed tasks is selected in header, emit event that filters allTasks for tasks with taskStatus = 'complete';
