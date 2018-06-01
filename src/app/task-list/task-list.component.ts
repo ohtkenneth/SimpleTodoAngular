@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-task-list',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskListComponent implements OnInit {
 
-  allTasks = [];
+  @Input() filterTasksBy: string;
 
+  allTasks = [];
   allTasksCompleted = true;
+  taskFilter = this.filterTasksBy || 'active';
+  filteredTasks = allTasks.filter((task) => {
+    return task.taskStatus === this.taskFilter;
+  });
 
   constructor() { }
 
@@ -20,7 +25,7 @@ export class TaskListComponent implements OnInit {
     this.allTasksCompleted = this.allTasks.length === 0 ? true : false;
     this.allTasks.push({
       taskDescription: newTask.taskDescription,
-      isTaskActive: newTask.isTaskActive
+      taskStatus: newTask.taskStatus
     });
   }
 

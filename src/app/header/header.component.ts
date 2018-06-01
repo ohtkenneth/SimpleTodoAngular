@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +7,7 @@ import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() filterTasks = new EventEmitter <{ filterTasksBy: string }> ();
+  @Output() filterTasks = new EventEmitter <{ filterTasksBy: string }> ();
 
   constructor() { }
 
@@ -17,5 +17,4 @@ export class HeaderComponent implements OnInit {
   onFilterTasks(filter) {
     this.filterTasks.emit({ filterTasksBy: filter })
   }
-
 }

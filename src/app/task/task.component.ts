@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TaskComponent implements OnInit {
   // define what a task is
-  @Input() task: { taskDescription: string, isTaskActive: boolean };
+  @Input() task: { taskDescription: string, taskStatus: string };
   @Input() taskIndex: { index: number };
 
   @Output() taskCompleted = new EventEmitter <{ index: string }> ();

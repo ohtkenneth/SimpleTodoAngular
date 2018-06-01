@@ -1,4 +1,13 @@
 <div class="container">
-	<app-header></app-header>
-	<app-task-list></app-task-list>
+	<app-header
+		(filterTasks)="onFilterTasks($event)"
+	>
+	</app-header>
+	<app-task-list
+		[filterTasksBy]="filter"
+	></app-task-list>
 </div>
+
+<!--
+	get filterTasks event data and inject into app-task-list?
+-->
