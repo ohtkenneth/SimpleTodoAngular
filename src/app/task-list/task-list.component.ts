@@ -7,14 +7,20 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TaskListComponent implements OnInit {
 
-  @Input() filterTasksBy: string;
+  // detects change in filterTasksBy
+  private _filter = '';
+  @Input()
+    set filter(filter: string) {
+      this._filter = (filter || 'active');
+      this.filterTasks();
+    }
+    get filter(): string {
+      return this._filter;
+    }
 
   allTasks = [];
+  filteredTasks = this.filterTasks()
   allTasksCompleted = true;
-  taskFilter = this.filterTasksBy || 'active';
-  filteredTasks = allTasks.filter((task) => {
-    return task.taskStatus === this.taskFilter;
-  });
 
   constructor() { }
 
@@ -25,14 +31,36 @@ export class TaskListComponent implements OnInit {
     this.allTasksCompleted = this.allTasks.length === 0 ? true : false;
     this.allTasks.push({
       taskDescription: newTask.taskDescription,
-      taskStatus: newTask.taskStatus
+      taskStatus: 'active'
     });
+    this.filterTasks();
   }
 
   onTaskCompleted(taskIndex) {
     // take taskIndex and remove it from allTasks
-    this.allTasks.splice(taskIndex, 1);
+    this.allTasks[0].taskStatus = 'complete';
+    this.filterTasks();
   }
+
+  onEditTask({ taskIndex, taskDescription }) {
+    this.allTasks[taskIndex].taskDescription = taskDescription;
+  }
+
+  filterTasks() {
+    this.filteredTasks = this.allTasks.filter((task) => {
+      return task.taskStatus === this.filter;
+    });
+  }
+
+  assertEquals(actual, expected, testName) {
+    if (actual === expected) {
+      console.log(`Test PASSED: [${testName}]`)
+    } else {
+      console.log(`Test FAILED: [${testName}]. Got "${actual}"", but expected "${expected}"`)
+    }
+  }
+
+
 }
 
 // by default app shows active tasks

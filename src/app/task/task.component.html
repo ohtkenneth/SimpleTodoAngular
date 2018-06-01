@@ -1,11 +1,19 @@
 <li class="list-group-item">
 	<div class="row">
 		<div class="col-sm-11">
-			Task: {{ task.taskDescription }}
+			<div id="taskDescription" contenteditable="true">
+				{{ task.taskDescription }}
+			</div>
 			Index: {{ taskIndex }}
-		</div>
-		<div class="col-sm-1">
-			<span class="input-group"><button class="btn btn-warning" id="{{ taskIndex }}" (click)="onTaskCompleted($event)">X</button></span>
+			<div class="dropdown">
+			  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    Dropdown button
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" id="{{ taskIndex }}" href="#" (click)="onEditTask({ taskIndex: $event.srcElement.id, taskDescription: $event.target.parentNode.parentNode.previousElementSibling.innerText })">Save Edit</a>
+			    <a class="dropdown-item" id="{{ taskIndex }}" href="#" (click)="onTaskCompleted($event)">CompleteTask</a>
+			  </div>
+			</div>
 		</div>
 	</div>
 </li>

@@ -8,7 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 export class TaskInputComponent implements OnInit {
  // @Output() serverCreated = new EventEmitter<{ serverName: string, serverContent: string }>();
-  @Output() newTaskCreated = new EventEmitter<{ taskDescription: string, taskStatus: string }> ();
+  @Output() newTaskCreated = new EventEmitter<{ taskDescription: string }> ();
 
   newTaskDescription: '';
 
@@ -20,8 +20,7 @@ export class TaskInputComponent implements OnInit {
   onAddNewTask() {
     console.log(this.newTaskDescription);
     this.newTaskCreated.emit({
-      taskDescription: this.newTaskDescription,
-      taskStatus: 'active'
+      taskDescription: this.newTaskDescription;
     });
     this.newTaskDescription = '';
   }

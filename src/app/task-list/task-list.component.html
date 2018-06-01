@@ -14,10 +14,15 @@
     All tasks completed!
   </li>
   <app-task
-    *ngFor="let task of allTasks; let i = index"
+    *ngFor="let task of filteredTasks; let i = index"
 		[taskIndex]="i"
     [task]="task"
 		(taskCompleted)="onTaskCompleted($event)"
+    (editTask)="onEditTask($event)"
   >
   </app-task>
 </ul>
+<!-- <button (click)="assertEquals(allTasks[0].taskStatus, 'complete', 'The first task should have taskStatus as active')">Assert taskStatus</button> -->
+<!--
+"assertEquals(allTasks[0].taskStatus, 'active', 'The first task should have taskStatus as active')"
+-->

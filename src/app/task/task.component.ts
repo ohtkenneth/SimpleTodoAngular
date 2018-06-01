@@ -11,6 +11,7 @@ export class TaskComponent implements OnInit {
   @Input() taskIndex: { index: number };
 
   @Output() taskCompleted = new EventEmitter <{ index: string }> ();
+  @Output() editTask = new EventEmitter <{ index: string, taskDescription: string }> ();
 
   constructor() { }
 
@@ -19,6 +20,9 @@ export class TaskComponent implements OnInit {
 
   onTaskCompleted(event) {
     this.taskCompleted.emit({ index: event.srcElement.id })
+  }
+  onEditTask({ taskIndex, taskDescription }) {
+    this.editTask.emit({ taskIndex, taskDescription })
   }
 }
 

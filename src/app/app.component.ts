@@ -11,7 +11,7 @@ export class AppComponent {
   filter = '';
 
   onFilterTasks({ filterTasksBy }) {
-    console.log(filterTasksBy);
+    //console.log(filterTasksBy);
     this.filter = filterTasksBy;
   }
 }
